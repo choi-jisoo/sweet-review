@@ -1,4 +1,3 @@
-from secrets import choice
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -16,60 +15,68 @@ class User(AbstractUser):
     ]
 
     LANGUAGE_ENGLISH = "en"
+    LANGUAGE_JAPANESE = "ja"
     LANGUAGE_KOREAN = "kr"
 
     LANGUAGE_CHOICES = [
         (LANGUAGE_ENGLISH, "English"),
+        (LANGUAGE_JAPANESE, "Japanese"),
         (LANGUAGE_KOREAN, "Korean"),
     ]
 
-    GENRE_ADVENTURE = "adventrue"
-    GENRE_CLASSICS = "classics"
-    GENRE_CRIME = "crime"
+    GENRE_ACTION = "action"
+    GENRE_ADVENTURE = "adventure"
+    GENRE_BIOGRAPHIES = "biographies"
+    GENRE_CLASSICS_BOOK = "classics"
+    GENRE_COMEDY_MOVIE = "comedy"
+    GENRE_COMIC_BOOK = "comic"
+    GENRE_COOKBOOKS_BOOK = "cookbooks"
+    GENRE_DETECTIVE = "detective"
+    GENRE_DOCUMENTARY_MOVIE = "documentary"
+    GENRE_DRAMA_MOVIE = "drama"
+    GENRE_ESSAYS_BOOK = "essays"
     GENRE_FANTASY = "fantasy"
+    GENRE_FICTION_BOOK = "fiction"
+    GENRE_HISTORY = "history"
     GENRE_HORROR = "horror"
     GENRE_MYSTERY = "mystery"
-    GENRE_NONFICTION = "nonfiction"
-    GENRE_POETRY = "poetry"
+    GENRE_POETRY_BOOK = "poetry"
     GENRE_ROMANCE = "romance"
-    GENRE_SCIFIC = "sci-fi"
+    GENRE_SCIFI = "sci-fi"
+    GENRE_THRILLERS = "thrillers"
+    GENRE_WESTERN_MOVIE = "western"
 
-    GENRE_COMEDY = "comedy"
-    GENRE_DRAMA = "drama"
-    GENRE_HISTORY = "history"
-    GENRE_ACTION = "action"
-    GENRE_THRILLER = "thriller"
-    GENRE_BIOGRAPHY = "biography"
-    GENRE_WAR = "war"
-
-    BOOK_GENRE = [
-        (GENRE_ADVENTURE, "Adventure"),
-        (GENRE_CLASSICS, "Classics"),
-        (GENRE_CRIME, "Crime"),
-        (GENRE_FANTASY, "Fantasy"),
-        (GENRE_HORROR, "Horror"),
-        (GENRE_MYSTERY, "Mystery"),
-        (GENRE_NONFICTION, "Nonfiction"),
-        (GENRE_POETRY, "Poetry"),
-        (GENRE_ROMANCE, "Romance"),
-        (GENRE_SCIFIC, "Sci-Fi"),
-    ]
-
-    MOVIE_GENRE = [
+    GENRE_CHOICES = [
         (GENRE_ACTION, "Action"),
         (GENRE_ADVENTURE, "Adventure"),
-        (GENRE_BIOGRAPHY, "Biography"),
-        (GENRE_COMEDY, "Comedy"),
-        (GENRE_DRAMA, "Drama"),
+        (GENRE_BIOGRAPHIES, "Biographies"),
+        (GENRE_DETECTIVE, "Detective"),
         (GENRE_FANTASY, "Fantasy"),
         (GENRE_HISTORY, "History"),
         (GENRE_HORROR, "Horror"),
         (GENRE_MYSTERY, "Mystery"),
         (GENRE_ROMANCE, "Romance"),
-        (GENRE_THRILLER, "Thriller"),
-        (GENRE_SCIFIC, "Sci-Fi"),
-        (GENRE_WAR, "War"),
+        (GENRE_SCIFI, "Sci-Fi"),
+        (GENRE_THRILLERS, "Thrillers"),
     ]
+
+    BOOK_GENRE_CHOICES = GENRE_CHOICES + [
+        (GENRE_CLASSICS_BOOK, "Classics"),
+        (GENRE_COMIC_BOOK, "Comic"),
+        (GENRE_COOKBOOKS_BOOK, "Cookbooks"),
+        (GENRE_ESSAYS_BOOK, "Essays"),
+        (GENRE_FICTION_BOOK, "Fiction"),
+        (GENRE_POETRY_BOOK, "Poetry"),
+    ]
+    BOOK_GENRE_CHOICES.sort()
+
+    MOVIE_GENRE_CHOICES = GENRE_CHOICES + [
+        (GENRE_COMEDY_MOVIE, "Comedy"),
+        (GENRE_DOCUMENTARY_MOVIE, "Documentary"),
+        (GENRE_DRAMA_MOVIE, "Drama"),
+        (GENRE_WESTERN_MOVIE, "Western"),
+    ]
+    MOVIE_GENRE_CHOICES.sort()
 
     bio = models.TextField(default="", null=True, blank=True)
     preference = models.CharField(
@@ -79,8 +86,8 @@ class User(AbstractUser):
         choices=LANGUAGE_CHOICES, max_length=2, null=True, blank=True
     )
     favourite_book_genre = models.CharField(
-        choices=BOOK_GENRE, max_length=20, null=True, blank=True
+        choices=BOOK_GENRE_CHOICES, max_length=20, null=True, blank=True
     )
     favourite_movie_genre = models.CharField(
-        choices=MOVIE_GENRE, max_length=20, null=True, blank=True
+        choices=MOVIE_GENRE_CHOICES, max_length=20, null=True, blank=True
     )

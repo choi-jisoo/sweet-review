@@ -8,6 +8,14 @@ class CustomUserAdmin(UserAdmin):
 
     """Custom User Admin"""
 
+    list_display = (
+        "username",
+        "language",
+        "preference",
+        "favourite_book_genre",
+        "favourite_movie_genre",
+    )
+
     list_filter = [
         "language",
         "preference",
