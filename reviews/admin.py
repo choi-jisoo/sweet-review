@@ -18,3 +18,9 @@ class ReviewAdmin(admin.ModelAdmin):
         "movie",
         "book",
     )
+
+    raw_id_fields = (
+        "created_by",
+        "movie",
+        "book",
+    )

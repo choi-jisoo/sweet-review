@@ -21,7 +21,7 @@ class Book(TimeStampedModel):
     category = models.ForeignKey(
         "categories.Category", on_delete=models.CASCADE, related_name="books"
     )
-    cover_image = models.ImageField()
+    cover_image = models.ImageField(upload_to="book_images", null=True, blank=True)
     rating = models.FloatField()
     writer = models.ForeignKey(
         "people.Person", on_delete=models.CASCADE, related_name="books"
@@ -32,3 +32,10 @@ class Book(TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+    def rating_average(self):
+        all_reviews = self.reviews.all()
+        all_ratings = 0
+        for review in all_reviews:
+            all_ratings += review.rating
+        return all_ratings / len(all_reviews) if len(all_reviews) > 0 else 0

@@ -31,13 +31,13 @@ class User(AbstractUser):
     language = models.CharField(
         choices=LANGUAGE_CHOICES, max_length=2, null=True, blank=True
     )
-    favourite_book_cat = models.ForeignKey(
+    favourite_book_category = models.ForeignKey(
         "categories.Category",
         on_delete=models.SET_NULL,
         null=True,
         related_name="book_users",
     )
-    favourite_movie_cat = models.ForeignKey(
+    favourite_movie_category = models.ForeignKey(
         "categories.Category",
         on_delete=models.SET_NULL,
         null=True,
