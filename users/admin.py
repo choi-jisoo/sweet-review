@@ -12,16 +12,16 @@ class CustomUserAdmin(UserAdmin):
         "username",
         "language",
         "preference",
-        "favourite_book_genre",
-        "favourite_movie_genre",
+        "favourite_book_cat",
+        "favourite_movie_cat",
     )
 
-    list_filter = [
+    list_filter = (
         "language",
         "preference",
-        "favourite_book_genre",
-        "favourite_movie_genre",
-    ]
+        "favourite_book_cat",
+        "favourite_movie_cat",
+    )
 
     fieldsets = UserAdmin.fieldsets + (
         (
@@ -29,8 +29,8 @@ class CustomUserAdmin(UserAdmin):
             {
                 "fields": (
                     "preference",
-                    "favourite_book_genre",
-                    "favourite_movie_genre",
+                    "favourite_book_cat",
+                    "favourite_movie_cat",
                 ),
             },
         ),
