@@ -6,10 +6,12 @@ name = "pypi"
 [packages]
 django = "==2.2.5"
 pillow = "*"
+psycopg2 = "*"
 
 [dev-packages]
 flake8 = "*"
 black = "*"
+django-seed = "*"
 
 [requires]
 python_version = "3.7"

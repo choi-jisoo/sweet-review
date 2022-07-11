@@ -38,4 +38,4 @@ class Book(TimeStampedModel):
         all_ratings = 0
         for review in all_reviews:
             all_ratings += review.rating
-        return all_ratings / len(all_reviews) if len(all_reviews) > 0 else 0
+        return round(all_ratings / len(all_reviews), 2) if len(all_reviews) > 0 else 0

@@ -14,10 +14,17 @@ class FavList(TimeStampedModel):
     """Favourite List Model Definition"""
 
     created_by = models.OneToOneField("users.User", on_delete=models.CASCADE)
-    books = models.ManyToManyField("books.Book", related_name="fav_lists", blank=True)
+    books = models.ManyToManyField(
+        "books.Book",
+        related_name="fav_lists",
+        blank=True,
+        null=True,
+    )
     movies = models.ManyToManyField(
         "movies.Movie",
         related_name="fav_lists",
+        blank=True,
+        null=True,
     )
 
     class Meta:

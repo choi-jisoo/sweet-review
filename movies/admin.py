@@ -25,10 +25,7 @@ class MovieAdmin(admin.ModelAdmin):
 
     raw_id_fields = ("director",)
 
-    filter_horizontal = (
-        "category",
-        "cast",
-    )
+    filter_horizontal = ("cast",)
 
     def get_thumbnail(self, obj):
         return mark_safe(f'<img width="100px" src="{obj.cover_image.url}" />')

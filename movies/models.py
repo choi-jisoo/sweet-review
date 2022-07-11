@@ -21,11 +21,13 @@ class Movie(TimeStampedModel):
     year = models.IntegerField()
     cover_image = models.ImageField(upload_to="movie_images", null=True, blank=True)
     rating = models.FloatField()
-    category = models.ManyToManyField("categories.Category", related_name="movies")
+    category = models.ForeignKey(
+        "categories.Category", on_delete=models.CASCADE, related_name="movies"
+    )
     director = models.ForeignKey(
         "people.Person", on_delete=models.CASCADE, related_name="movies"
     )
-    cast = models.ManyToManyField("people.Person", blank=True)
+    cast = models.ManyToManyField("people.Person", blank=True, null=True)
 
     class Meta:
         ordering = ["title"]
@@ -38,4 +40,4 @@ class Movie(TimeStampedModel):
         all_ratings = 0
         for review in all_reviews:
             all_ratings += review.rating
-        return all_ratings / len(all_reviews) if len(all_reviews) > 0 else 0
+        return round(all_ratings / len(all_reviews), 2) if len(all_reviews) > 0 else 0
